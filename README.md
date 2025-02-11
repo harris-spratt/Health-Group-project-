@@ -1,9 +1,11 @@
 # Health Risk Scoring Project (Web Application)
-### Group Project Members: 
-### Harris Spratt, Parvat	Bhusal, Robert	Smales, Abdirahman Ali, Abdullahi Ali, Ibrahim Osman 
+## Group Project Members: 
+**Harris Spratt, Parvat	Bhusal, Robert	Smales, Abdirahman Ali, Abdullahi Ali, Ibrahim Osman** 
 
 
-Overview
+## Overview
+
+
 
 
 This project, aims to create a web application that automates the results from tests to assist in clinical diagnosis. The application will:
@@ -16,7 +18,9 @@ This project, aims to create a web application that automates the results from t
 
 
 
-Table of Contents
+## Table of Contents
+
+
 
 • Features
 
@@ -24,7 +28,9 @@ Table of Contents
 
 
 
-Features
+## Features
+
+
 
 • User Authentication: Secure signup and login system.
 
@@ -42,7 +48,9 @@ Features
 
 
 
-Technologies Used
+## Technologies Used
+
+
 
 • Programming Language: Python
 
