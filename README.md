@@ -3,6 +3,10 @@
 **Harris Spratt, Parvat	Bhusal, Robert	Smales, Abdirahman Ali, Abdullahi Ali, Ibrahim Osman** 
 
 
+License - https://img.shields.io/github/license/harris-spratt/Health-Group-project-
+
+
+
 ## Overview
 
 
