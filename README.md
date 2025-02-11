@@ -1,5 +1,6 @@
 # Health Risk Scoring Project (Web Application)
-### Group Project Members:Harris Spratt, Parvat	Bhusal, Robert	Smales, Abdirahman Ali, Abdullahi Ali, Ibrahim Osman 
+### Group Project Members: 
+### Harris Spratt, Parvat	Bhusal, Robert	Smales, Abdirahman Ali, Abdullahi Ali, Ibrahim Osman 
 
 
 Overview
