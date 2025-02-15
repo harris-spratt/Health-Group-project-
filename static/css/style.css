@@ -1,4 +1,18 @@
+/* Minimal style.css */
 body {
     font-family: Arial, sans-serif;
-    padding: 20px;
+    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+h1 {
+    color: #121212;
+    margin-bottom: 20px;
+}
+
+p {
+    color: #555;
+    font-size: 1.1rem;
 }
