@@ -10,7 +10,16 @@ def home():
 def tests():
     return render_template("tests.html")
 
+# Add these new routes:
+@app.route("/about")
+def about():
+    return render_template("about.html")
 
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+# Existing test routes...
 @app.route("/h2fpef")
 def h2fpef():
     return "H2FPEF Test Page"
@@ -25,6 +34,3 @@ def who_cv():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
