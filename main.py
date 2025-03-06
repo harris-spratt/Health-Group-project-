@@ -1,38 +1,39 @@
 from flask import Flask, render_template, request, session, redirect, url_for
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key_here'  # Required for session management
+app.secret_key = 'dev'  # Change for production
 
-# Hardcoded password for demo purposes
-CORRECT_PASSWORD = "health123"
+# Simple user database (replace with real DB later)
+USERS = {
+    'admin': 'health123'
+}
 
 
 @app.route('/')
 def home():
-    return render_template("home.html")
+    return render_template('home.html', logged_in=session.get('logged_in'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
+        username = request.form.get('username')
         password = request.form.get('password')
 
-        if password == CORRECT_PASSWORD:
+        if USERS.get(username) == password:
             session['logged_in'] = True
+            session['username'] = username
             return redirect(url_for('tests'))
-        else:
-            return render_template('login.html', error="Incorrect password")
+        return render_template('login.html', error="Invalid credentials")
 
     return render_template('login.html')
 
 
 @app.route('/logout')
 def logout():
-    session.pop('logged_in', None)
+    session.clear()
     return redirect(url_for('home'))
 
-
-# Existing test routes
 @app.route("/tests")
 def tests():
     if not session.get('logged_in'):
@@ -59,6 +60,7 @@ def who_cv():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     return "WHO CV Risk Test Page"
+
 
 
 if __name__ == '__main__':
