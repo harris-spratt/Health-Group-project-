@@ -41,21 +41,21 @@ def tests():
     return render_template("tests.html")
 
 
-@app.route("/h2fpef")
+@app.route("/h2fpef.html")
 def h2fpef():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     return "H2FPEF Test Page"
 
 
-@app.route("/qrisk3")
+@app.route("/qrisk3.html")
 def qrisk3():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     return "QRISK3 Test Page"
 
 
-@app.route("/who_cv")
+@app.route("/who_cv.html")
 def who_cv():
     if not session.get('logged_in'):
         return redirect(url_for('login'))

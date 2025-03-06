@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="upload-form">
+    <h2>Upload H2FPEF PDF</h2>
+
+    <form action="{{ url_for('h2fpef') }}" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="file" name="file" accept=".pdf" required>
+        </div>
+        <button type="submit" class="btn">Upload</button>
+    </form>
+
+    {% if uploaded %}
+    <div class="success-msg">PDF Uploaded!</div>
+    {% endif %}
+
+    <a href="{{ url_for('tests') }}" class="back-btn">← Back</a>
+</div>
+{% endblock %}

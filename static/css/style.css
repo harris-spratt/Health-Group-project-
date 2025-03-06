@@ -74,3 +74,29 @@ body {
 .test-card:hover {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+
+/* Add to your existing style.css */
+.upload-form {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin: 20px 0;
+}
+
+.success-msg {
+    color: #2ecc71;
+    margin: 15px 0;
+    padding: 10px;
+    background: #e8f8f0;
+}
+
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    color: #2A9D8F;
+}
