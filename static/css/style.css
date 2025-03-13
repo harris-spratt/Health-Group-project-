@@ -100,6 +100,30 @@ body {
     font-weight: 500;
 }
 
+/* Logout Button */
+.sidebar-nav .logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 8px;
+    background: #ff4d4d; /* Red color */
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.3s ease;
+    margin-bottom: 10px; /* Space between logout button and user profile */
+}
+
+.sidebar-nav .logout-btn:hover {
+    background: #e60000; /* Darker red on hover */
+}
+
+.sidebar-nav .logout-btn i {
+    font-size: 1.2rem;
+}
+
 /* Main Content */
 main {
     margin-left: 250px; /* Offset for sidebar */
@@ -225,4 +249,59 @@ body {
 .btn:hover {
     background: #f0f0f0;
     transform: translateY(-2px);
+}
+
+/* About Us Page */
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-container h2 {
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.about-container p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Contact Us Page */
+.contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact-container h2 {
+    font-size: 2rem;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.contact-container input,
+.contact-container textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.contact-container button {
+    width: 100%;
+    padding: 12px;
+    background: grey;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.contact-container button:hover {
+    background: #16a085;
 }
