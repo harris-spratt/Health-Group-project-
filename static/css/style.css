@@ -331,8 +331,8 @@ body {
 
 .test-box img {
     width: 100%;
-    height: 200px; /* Fixed height for images */
-    object-fit: cover; /* Ensures images fit properly */
+    height: 250px; /* Fixed height for images */
+    object-fit: contain; /* Ensures images fit properly */
     border-radius: 15px 15px 0 0; /* Rounded corners only at the top */
 }
 
