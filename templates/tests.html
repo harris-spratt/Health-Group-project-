@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="tests-container">
+    <h2>Select a Test</h2>
+
+    <div class="pdf-tracker">
+        <p>Uploaded PDFs: {{ session.get('uploaded_pdfs', {}).values() | select('eq', True) | list | length }}/3</p>
+    </div>
+
+    <div class="tests-grid">
+        <a href="{{ url_for('h2fpef') }}" class="test-box">
+            <img src="{{ url_for('static', filename='images/h2fpef.jpg') }}" alt="H2FPEF Test">
+            <h3>H2FPEF Test</h3>
+            <p>Assess heart failure risk using clinical factors.</p>
+        </a>
+        <a href="{{ url_for('qrisk3') }}" class="test-box">
+            <img src="{{ url_for('static', filename='images/qrisk3.jpg') }}" alt="QRISK3 Test">
+            <h3>QRISK3 Test</h3>
+            <p>Estimate cardiovascular risk over 10 years.</p>
+        </a>
+        <a href="{{ url_for('who_cv') }}" class="test-box">
+            <img src="{{ url_for('static', filename='images/who_cv.jpg') }}" alt="WHO CV Risk Test">
+            <h3>WHO Cardiovascular Risk</h3>
+            <p>Assess global cardiovascular disease risk.</p>
+        </a>
+    </div>
+</section>
+{% endblock %}

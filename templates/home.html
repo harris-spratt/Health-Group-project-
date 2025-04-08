@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="home-container">
+    <h1>Welcome to Health Risk App</h1>
+    <p>Welcome to our web application, designed to automate test result extraction, calculate health risk scores, and store valuable data for clinical analysis, all in one secure and user-friendly platform.</p>
+    <a href="{{ url_for('tests') }}" class="btn">Get Started</a>
+</section>
+{% endblock %}
