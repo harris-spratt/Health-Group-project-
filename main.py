@@ -530,19 +530,14 @@ def h2fpef():
     if request.method == "POST":
         file = request.files.get("file")
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-            file.save(path)
-
-            # Get PASP from the submitted form
+            # Instead of saving the file, process it directly from memory
+            # Pass file.stream to readechotest, assuming it can handle a file-like object
             pasp_value = request.form.get("pasp")
-            #get cholestorol ratio
             chol_value = request.form.get("chol")
-            # get systolic blood pressure
             sbp_value = request.form.get("sbp")
 
-            # Extract patient data from the PDF, passing PASP value
-            data = readechotest(path, pasp=pasp_value, sbp=sbp_value, chol=chol_value)
+            # Extract patient data from the PDF directly using the file's stream
+            data = readechotest(file.stream, pasp=pasp_value, sbp=sbp_value, chol=chol_value)
 
             # Insert extracted data into the database
             insert_h2fpef_data(data)
@@ -565,35 +560,7 @@ def h2fpef():
     # If there is any extracted data or calculation, pass it to the template
     return render_template("h2fpef.html", uploaded=session["uploaded_pdfs"]["h2fpef"], data=data, h2fpef_result=h2fpef_result, qrisk_result=qrisk_result)
 
-@app.route("/tests/qrisk3", methods=["GET", "POST"])
-def qrisk3():
-    if "uploaded_pdfs" not in session:
-        session["uploaded_pdfs"] = {"h2fpef": False, "qrisk3": False, "who_cv": False}
 
-    if request.method == "POST":
-        file = request.files.get("file")
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
-            session["uploaded_pdfs"]["qrisk3"] = True  # Mark as uploaded
-            return render_template("qrisk3.html", uploaded=True)
-
-    return render_template("qrisk3.html", uploaded=False)
-
-@app.route("/tests/who_cv", methods=["GET", "POST"])
-def who_cv():
-    if "uploaded_pdfs" not in session:
-        session["uploaded_pdfs"] = {"h2fpef": False, "qrisk3": False, "who_cv": False}
-
-    if request.method == "POST":
-        file = request.files.get("file")
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
-            session["uploaded_pdfs"]["who_cv"] = True  # Mark as uploaded
-            return render_template("who_cv.html", uploaded=True)
-
-    return render_template("who_cv.html", uploaded=False)
 
 @app.route("/logout")
 def logout():
