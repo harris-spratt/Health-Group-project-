@@ -414,3 +414,28 @@ body {
 .back-link:hover {
     color: #264653; /* Darker oceanic blue-green */
 }
+/* Styling for the form group and input fields */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  /* Space between form elements */
+    max-width: 500px; /* Optional: Set a max width to keep form inputs compact */
+    margin: 0 auto;  /* Center the form group */
+}
+
+/* Styling for the labels to keep them aligned with inputs */
+.form-group label {
+    font-size: 1rem;
+    color: #333;  /* Dark color for text */
+    margin-bottom: 5px;
+}
+
+/* Styling for the input fields */
+.form-group input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;  /* Space between inputs */
+    width: 100%;  /* Make inputs take full width of the form */
+}
