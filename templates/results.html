@@ -1,1 +1,54 @@
 
+{% extends "base.html" %}
+{% block content %}
+<body>
+<header>
+<h1>Patient Results</h1>
+</header>
+<div class="search-container">
+<input type="text" id="searchInput" placeholder="Search by Patient Name...">
+</div>
+
+<div class="results-container">
+<table id="resultsTable">
+<thead>
+<tr>
+<th>Patient Name</th>
+<th>Age</th>
+<th>Sex</th>
+<th>BMI</th>
+<th>Systolic BP</th>
+<th>Cholesterol/HDL Ratio</th>
+<th>E/E Prime</th>
+<th>PASP</th>
+<th>Atrial Fibrillation</th>
+<th>QRisk3 Score (%)</th>
+<th>H2FPEF Score</th>
+<th>Date of Echo</th>
+</tr>
+</thead>
+<tbody>
+{% for result in results %}
+<tr>
+<td>{{ result.patient_name }}</td>
+<td>{{ result.age }}</td>
+<td>{{ result.sex }}</td>
+<td>{{ result.bmi }}</td>
+<td>{{ result.systolic_bp }}</td>
+<td>{{ result.cholesterol_ratio }}</td>
+<td>{{ result.E_e }}</td>
+<td>{{ result.pasp }}</td>
+<td>{{ result.af }}</td>
+<td>{{ result.qrisk3_score }}%</td>
+<td>{{ result.H2FPEF_score }}</td>
+<td>{{ result.date_of_echo }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+
+<script src="{{ url_for('static', filename='scripts/script.js') }}"></script>
+
+</body>
+{% endblock %}#
