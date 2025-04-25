@@ -2,7 +2,7 @@ import os
 import sqlite3
 import math
 from flask import Flask, render_template, request, redirect, url_for, session, g
-from werkzeug.utils import secure_filename
+from werkzeug.security import check_password_hash
 import pdfplumber
 import re
 import random
@@ -22,12 +22,15 @@ if not os.path.exists(UPLOAD_FOLDER):
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
-# Connecting to database
+# Function to get the database connection
 def get_db():
+    # Check if the database connection is already available in `g`
     db = getattr(g, '_database', None)
     if db is None:
+        # If not, establish a new connection to the SQLite database
         db = sqlite3.connect(db_location)
-        g._database = db
+        db.row_factory = sqlite3.Row  # Enable accessing columns by name
+        g._database = db  # Store the connection in `g`
     return db
 
 @app.teardown_appcontext
@@ -484,9 +487,12 @@ def extract_values_from_text(text, pattern):
 
 @app.route("/", methods=["GET", "POST"])
 def login():
+    hashed_password = "scrypt:32768:8:1$v8oSW7nWajiMxrrd$b5f09615ce676ec6352bc9de910febea5487157dfbc28cf02dbdd0be46f91ee84725319a9137c584595ffee79c972cb41efd07ec6206344bb0d1c48c9898ab78"  # full string here
+
     if request.method == "POST":
         entered_password = request.form.get("password")
-        if entered_password == "pass":
+
+        if check_password_hash(hashed_password, entered_password):
             session["authenticated"] = True
             return redirect(url_for("home"))
         else:
@@ -520,6 +526,8 @@ def tests():
 
 @app.route("/tests/h2fpef", methods=["GET", "POST"])
 def h2fpef():
+    if not session.get("authenticated"):
+        return redirect(url_for("login"))
     data = None
     h2fpef_result = None  # To hold the result of the H2FPEF calculation
     qrisk_result = None
@@ -561,7 +569,17 @@ def h2fpef():
     return render_template("h2fpef.html", uploaded=session["uploaded_pdfs"]["h2fpef"], data=data, h2fpef_result=h2fpef_result, qrisk_result=qrisk_result)
 
 
+@app.route('/results')
+def results():
+    if not session.get("authenticated"):
+        return redirect(url_for("login"))
+    # Get data from the database
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM results')
+    results = cursor.fetchall()  # Get all rows from the query
 
+    return render_template('results.html', results=results)
 @app.route("/logout")
 def logout():
     session.pop("authenticated", None)  # Clear the session
