@@ -414,8 +414,7 @@ def readechotest(pdf_path, pasp=None, sbp=None, chol=None):
     extracted_text_plumber = "\n\n".join(filter(None, extracted_text_plumber))
     text = extracted_text_plumber
     # Example extraction using regex
-    #name = extract_values_from_text(text, r"Patient Name\s([A-Za-z'-]+\s+[A-Za-z'-]+)")
-    name= "sample_patient"
+    name = extract_values_from_text(text, r"Patient Name\s([A-Za-z'-]+\s+[A-Za-z'-]+)")
     age = extract_values_from_text(text, r"Age\s(\d+)")
     sex = extract_values_from_text(text, r"Gender\s*([A-Za-z]+)")
     # Normalize the sex value
