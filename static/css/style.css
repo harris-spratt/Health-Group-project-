@@ -414,3 +414,84 @@ body {
 .back-link:hover {
     color: #264653; /* Darker oceanic blue-green */
 }
+/* Styling for the form group and input fields */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  /* Space between form elements */
+    max-width: 500px; /* Optional: Set a max width to keep form inputs compact */
+    margin: 0 auto;  /* Center the form group */
+}
+
+/* Styling for the labels to keep them aligned with inputs */
+.form-group label {
+    font-size: 1rem;
+    color: #333;  /* Dark color for text */
+    margin-bottom: 5px;
+}
+
+/* Styling for the input fields */
+.form-group input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;  /* Space between inputs */
+    width: 100%;  /* Make inputs take full width of the form */
+}
+.results-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border: 3px solid #000 !important; /* Dark, thick border */
+    box-sizing: border-box;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 3px solid #000 !important; /* Apply a border to the cells as well */
+}
+
+
+th {
+    background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+header {
+    color: black;
+    padding: 10px 0;
+}
+
+h1 {
+    margin: 0;
+}
+.search-container {
+    margin: 20px;
+    text-align: center;
+}
+
+#searchInput {
+    width: 80%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+

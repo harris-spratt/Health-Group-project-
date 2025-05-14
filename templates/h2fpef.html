@@ -2,7 +2,7 @@
 
 {% block content %}
 <section class="upload-container">
-    <h2>Upload PDF for H2FPEF Test</h2>
+    <h2>Upload PDF for H2FPEF and qrisk3 Test</h2>
 
     <div class="upload-box">
         <form action="{{ url_for('h2fpef') }}" method="POST" enctype="multipart/form-data">
@@ -12,6 +12,19 @@
                     <i class="fas fa-file-upload"></i> Choose PDF File
                 </label>
             </div>
+
+            <div class="form-group">
+                <label for="pasp">Enter PASP (mmHg):</label>
+               <input type="number" name="pasp" step="0.1" required>
+
+               <label for="chol">Enter cholesterol/HDL ratio:</label>
+               <input type="number" name="chol" step="0.1" required>
+
+               <label for="sbp">Enter Systolic blood pressure (mmHg):</label>
+              <input type="number" name="sbp" step="0.1" required>
+           </div>
+
+
             <button type="submit" class="btn">Analyze PDF</button>
         </form>
 
@@ -22,8 +35,50 @@
         {% endif %}
     </div>
 
+    <!-- Display extracted data and H2FPEF result if available -->
+    {% if data %}
+    <div class="result-box">
+        <h3>Extracted Data</h3>
+        <ul>
+            <li><strong>Patient Name:</strong> {{ data['Patient Name'] }}</li>
+            <li><strong>Age:</strong> {{ data['Age'] }}</li>
+            <li><strong>BMI:</strong> {{ data['BMI'] }}</li>
+            <li><strong>E/E Prime:</strong> {{ data['E/E Prime'] }}</li>
+            <li><strong>PASP:</strong> {{ data['PAP'] }}</li>
+            <li><strong>Atrial Fibrillation:</strong> {{ 'yes' if data['Atrial Fibrillation'] else 'no' }}</li>
+        </ul>
+
+        <!-- Display H2FPEF result if calculated -->
+        {% if h2fpef_result is not none %}
+        <div class="h2fpef-result">
+            <h4>H2FPEF Result:</h4>
+            <p>The calculated H2FPEF result is: {{ h2fpef_result }}</p>
+        </div>
+        {% else %}
+        <div class="h2fpef-result">
+            <h4>H2FPEF Result:</h4>
+            <p>The result could not be calculated due to missing data.</p>
+        </div>
+        {% endif %}
+
+        <!-- Display qrisk3 result if calculated -->
+        {% if qrisk_result is not none %}
+        <div class="h2fpef-result">
+            <h4>QRisk3 Result:</h4>
+            <p>Your 10 year QRISK3 score is: {{ qrisk_result }}</p>
+        </div>
+        {% else %}
+        <div class="h2fpef-result">
+            <h4>QRisk3 Result:</h4>
+            <p>The result could not be calculated due to missing data.</p>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
     <a href="{{ url_for('tests') }}" class="back-link">
         <i class="fas fa-arrow-left"></i> Back to Tests
     </a>
 </section>
 {% endblock %}
+
